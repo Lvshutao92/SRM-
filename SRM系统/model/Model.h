@@ -41,10 +41,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSString *id;
 
 
+//
+@property(nonatomic,strong)NSString *key;
+@property(nonatomic,strong)NSString *label;
+
 //-------------私有线索
 
-//@property(nonatomic,strong)NSString *leadCreateDate;
-//@property(nonatomic,strong)NSString *leadCreateDate;
+
 //@property(nonatomic,strong)NSString *leadCreateDate;
 //@property(nonatomic,strong)NSString *leadCreateDate;
 //@property(nonatomic,strong)NSString *leadCreateDate;

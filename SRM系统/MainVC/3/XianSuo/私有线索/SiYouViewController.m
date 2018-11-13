@@ -1,76 +1,41 @@
 //
-//  XianSuoViewController.m
+//  SiYouViewController.m
 //  SRM系统
 //
-//  Created by 吕书涛 on 2018/11/9.
+//  Created by 吕书涛 on 2018/11/12.
 //  Copyright © 2018 吕书涛. All rights reserved.
 //
 
-#import "XianSuoViewController.h"
-#import "GongYouXianSuoCell.h"
 #import "SiYouViewController.h"
 
+#import "GongYouXianSuoCell.h"
 
-@interface XianSuoViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SiYouViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSInteger number;
     NSInteger page;
 }
-@property(nonatomic,strong)UISegmentedControl *segmentedControl;
 
 @property(nonatomic,strong)UITableView *tableview;
 @property(nonatomic,strong)NSMutableArray *dataArray;
 
-@property(nonatomic,strong)SiYouViewController *siyouVC;
 @end
 
-@implementation XianSuoViewController
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
+@implementation SiYouViewController
 
-
-- (void)clickback{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    UIView *btnview = [[UIView alloc]initWithFrame:CGRectMake(0, kStatusBarHeight, 44, 44)];
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(5, 7, 30, 30);
-    [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [btnview addSubview:btn];
-    [btn addTarget:self action:@selector(clickback) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *bar = [[UIBarButtonItem alloc]initWithCustomView:btnview];
-    self.navigationItem.leftBarButtonItem = bar;
-    
-    
-    
-    self.siyouVC = [[SiYouViewController alloc]init];
-    
-    
-    NSArray * _titles = @[@"公有线索", @"私有线索"];
-    _segmentedControl = [[UISegmentedControl alloc] initWithItems:_titles];
-    _segmentedControl.selectedSegmentIndex = 0;
-    _segmentedControl.tintColor = [UIColor whiteColor];
-    [_segmentedControl addTarget:self action:@selector(segmentValueChanged:) forControlEvents:UIControlEventValueChanged];
-    _segmentedControl.frame = CGRectMake(0.0, 0.0, 200.0, 29.0);
-    self.navigationItem.titleView = _segmentedControl;
-    
-    
+    self.view.backgroundColor = [UIColor redColor];
     self.tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-    [self.tableview registerNib:[UINib nibWithNibName:@"GongYouXianSuoCell" bundle:nil] forCellReuseIdentifier:@"gongyoucell"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"GongYouXianSuoCell" bundle:nil] forCellReuseIdentifier:@"siyoucell"];
     [self.view addSubview:self.tableview];
     
     UIView *footerview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
     self.tableview.tableFooterView = footerview;
-
+    
     self.tableview.estimatedRowHeight = 0;
     self.tableview.estimatedSectionHeaderHeight = 0;
     self.tableview.estimatedSectionFooterHeight = 0;
@@ -78,27 +43,6 @@
     
     
     [self setUpRefresh];
-}
-
-//按钮点击事件
--(void)segmentValueChanged:(UISegmentedControl *)seg{
-    switch (seg.selectedSegmentIndex) {
-        case 0:
-//            [self.tableview reloadData];
-            
-            [self.siyouVC.view removeFromSuperview];
-            [self.siyouVC removeFromParentViewController];
-            break;
-        case 1:
-//            [self.tableview reloadData];
-            
-            [self addChildViewController:self.siyouVC];
-            [self.view addSubview:self.siyouVC.view];
-            
-            break;
-        default:
-            break;
-    }
 }
 
 - (void)setUpRefresh{
@@ -121,14 +65,14 @@
 - (void)loddeList{
     [self.tableview.mj_footer endRefreshing];
     __weak typeof(self) weakSelf = self;
-    NSDictionary *dic = @{@"":@"",};
-    NSString *st = [NSString stringWithFormat:@"%@?currentPage=1&pageSize=10&sort=LeadPublic_id desc",KURLNSString(@"lead/public/list")];
+    NSDictionary *dic = @{@"":@"",
+                          };
+    NSString *st = [NSString stringWithFormat:@"%@?currentPage=1&pageSize=10",KURLNSString(@"lead/private/list")];
     NSString *urlstring = [st stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-
     [Manager requestPOSTWithURLStr:urlstring paramDic:dic finish:^(id  _Nonnull responseObject) {
         NSDictionary *diction = [Manager returndictiondata:responseObject];
-        //NSLog(@"-44444------------%@",diction);
+//        NSLog(@"--SiYou--------------------------%@",diction);
         self->number = [[diction objectForKey:@"total"] integerValue];
         [weakSelf.dataArray removeAllObjects];
         for (NSDictionary *dt in [diction objectForKey:@"list"]) {
@@ -139,8 +83,8 @@
         [weakSelf.tableview.mj_header endRefreshing];
         [weakSelf.tableview reloadData];
     } enError:^(NSError * _Nonnull error) {
-        [weakSelf.tableview.mj_header endRefreshing];
         NSLog(@"error=========%@",error);
+        [weakSelf.tableview.mj_header endRefreshing];
     }];
     
 }
@@ -150,9 +94,9 @@
     __weak typeof(self) weakSelf = self;
     NSDictionary *dic = @{@"":@"",
                           };
-    NSString *st = [NSString stringWithFormat:@"%@?currentPage=%ld&pageSize=10&sort=LeadPublic_id desc",KURLNSString(@"lead/public/list"),page];
+    NSString *st = [NSString stringWithFormat:@"%@?currentPage=%ld&pageSize=10",KURLNSString(@"lead/private/list"),page];
     NSString *urlstring = [st stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
+    
     [Manager requestPOSTWithURLStr:urlstring paramDic:dic finish:^(id  _Nonnull responseObject) {
         NSDictionary *diction = [Manager returndictiondata:responseObject];
         for (NSDictionary *dt in [diction objectForKey:@"list"]) {
@@ -163,15 +107,19 @@
         [weakSelf.tableview.mj_footer endRefreshing];
         [weakSelf.tableview reloadData];
     } enError:^(NSError * _Nonnull error) {
-        [weakSelf.tableview.mj_footer endRefreshing];
         NSLog(@"error=========%@",error);
+        [weakSelf.tableview.mj_footer endRefreshing];
     }];
 }
 
 
 
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIViewController *v = [[UIViewController alloc]init];
+    v.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:v animated:YES];
+}
 
 
 
@@ -180,18 +128,17 @@
 
 #pragma mark tableview-delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 425;
+       return 425;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
+   return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *identifierCell = @"gongyoucell";
+    static NSString *identifierCell = @"siyoucell";
     GongYouXianSuoCell *cell = [tableView dequeueReusableCellWithIdentifier:identifierCell];
     if (cell == nil) {
         cell = [[GongYouXianSuoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifierCell];
     }
-    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     cell.contentView.backgroundColor = RGBACOLOR(245, 245, 245, 1);
     LRViewBorderRadius(cell.bgview, 10, 0, [UIColor whiteColor]);
@@ -214,6 +161,7 @@
     cell.lab9.text = [NSString stringWithFormat:@"线索编号 %@",mo.leadNo];
     cell.lab10.text = [NSString stringWithFormat:@"已创建天数 %@",mo.existDays];
     cell.lab11.text = [NSString stringWithFormat:@"获取日期 %@",mo.leadCreateDate];
+    
     [cell.btn1 addTarget:self action:@selector(clickbtn1gy:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btn2 addTarget:self action:@selector(clickbtn2gy:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btn3 addTarget:self action:@selector(clickbtn3gy:) forControlEvents:UIControlEventTouchUpInside];
@@ -240,19 +188,23 @@
     UIAlertAction *ccc = [UIAlertAction actionWithTitle:@"新增沟通记录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
     }];
-    UIAlertAction *ddd = [UIAlertAction actionWithTitle:@"转入私有线索" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *ddd = [UIAlertAction actionWithTitle:@"转到公有线索" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
     }];
+    UIAlertAction *fff = [UIAlertAction actionWithTitle:@"转为机会" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+   
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
     [alert addAction:aaa];
     [alert addAction:bbb];
     [alert addAction:ccc];
     [alert addAction:ddd];
+    [alert addAction:fff];
     [alert addAction:cancle];
     [self presentViewController:alert animated:YES completion:nil];
 }
-
 
 
 

@@ -9,4 +9,5 @@ target 'SRM系统' do
   pod 'Masonry', '~> 1.1.0'
   pod 'FLAnimatedImage', '~> 1.0.12'
   pod 'ZXCategories', '~> 0.3.3'
+pod 'PGDatePicker', '~> 2.5.6'
 end

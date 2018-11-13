@@ -12,12 +12,13 @@
 		75362C8B2199627900893AC3 /* HeTongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362C8A2199627900893AC3 /* HeTongViewController.m */; };
 		75362C8E2199768D00893AC3 /* GouTongJiLuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362C8D2199768D00893AC3 /* GouTongJiLuViewController.m */; };
 		75362C92219978A700893AC3 /* ShouKuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362C91219978A700893AC3 /* ShouKuanViewController.m */; };
+		75362CF1219A9FD900893AC3 /* AddGongYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362CF0219A9FD900893AC3 /* AddGongYouViewController.m */; };
+		75362CF6219AA33200893AC3 /* AddSiYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362CF5219AA33200893AC3 /* AddSiYouViewController.m */; };
+		75362D07219AC7CD00893AC3 /* XFTreePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362D06219AC7CD00893AC3 /* XFTreePopupView.m */; };
 		7593E18F219523A400AA9BA5 /* XianSuoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7593E18E219523A400AA9BA5 /* XianSuoViewController.m */; };
 		7593E19821952E8200AA9BA5 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7593E19721952E8200AA9BA5 /* UserViewController.m */; };
 		7593E19F21954B4600AA9BA5 /* GongYouXianSuoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7593E19D21954B4600AA9BA5 /* GongYouXianSuoCell.m */; };
 		7593E1A021954B4600AA9BA5 /* GongYouXianSuoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7593E19E21954B4600AA9BA5 /* GongYouXianSuoCell.xib */; };
-		7593E1A421954CE300AA9BA5 /* SiYouXianSuoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7593E1A221954CE300AA9BA5 /* SiYouXianSuoCell.m */; };
-		7593E1A521954CE300AA9BA5 /* SiYouXianSuoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7593E1A321954CE300AA9BA5 /* SiYouXianSuoCell.xib */; };
 		7593E1A821955C7500AA9BA5 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7593E1A721955C7500AA9BA5 /* Model.m */; };
 		75D7D0DF21990F2A00B6242F /* SiYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D7D0DE21990F2A00B6242F /* SiYouViewController.m */; };
 		75F9740721926D8B00F96078 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F9740621926D8B00F96078 /* AppDelegate.m */; };
@@ -73,6 +74,12 @@
 		75362C8D2199768D00893AC3 /* GouTongJiLuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GouTongJiLuViewController.m; sourceTree = "<group>"; };
 		75362C90219978A700893AC3 /* ShouKuanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShouKuanViewController.h; sourceTree = "<group>"; };
 		75362C91219978A700893AC3 /* ShouKuanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShouKuanViewController.m; sourceTree = "<group>"; };
+		75362CEF219A9FD900893AC3 /* AddGongYouViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddGongYouViewController.h; sourceTree = "<group>"; };
+		75362CF0219A9FD900893AC3 /* AddGongYouViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddGongYouViewController.m; sourceTree = "<group>"; };
+		75362CF4219AA33200893AC3 /* AddSiYouViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSiYouViewController.h; sourceTree = "<group>"; };
+		75362CF5219AA33200893AC3 /* AddSiYouViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSiYouViewController.m; sourceTree = "<group>"; };
+		75362D05219AC7CD00893AC3 /* XFTreePopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFTreePopupView.h; sourceTree = "<group>"; };
+		75362D06219AC7CD00893AC3 /* XFTreePopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFTreePopupView.m; sourceTree = "<group>"; };
 		7593E18D219523A400AA9BA5 /* XianSuoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XianSuoViewController.h; sourceTree = "<group>"; };
 		7593E18E219523A400AA9BA5 /* XianSuoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XianSuoViewController.m; sourceTree = "<group>"; };
 		7593E19621952E8200AA9BA5 /* UserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
@@ -80,9 +87,6 @@
 		7593E19C21954B4600AA9BA5 /* GongYouXianSuoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GongYouXianSuoCell.h; sourceTree = "<group>"; };
 		7593E19D21954B4600AA9BA5 /* GongYouXianSuoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GongYouXianSuoCell.m; sourceTree = "<group>"; };
 		7593E19E21954B4600AA9BA5 /* GongYouXianSuoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GongYouXianSuoCell.xib; sourceTree = "<group>"; };
-		7593E1A121954CE300AA9BA5 /* SiYouXianSuoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiYouXianSuoCell.h; sourceTree = "<group>"; };
-		7593E1A221954CE300AA9BA5 /* SiYouXianSuoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SiYouXianSuoCell.m; sourceTree = "<group>"; };
-		7593E1A321954CE300AA9BA5 /* SiYouXianSuoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SiYouXianSuoCell.xib; sourceTree = "<group>"; };
 		7593E1A621955C7500AA9BA5 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		7593E1A721955C7500AA9BA5 /* Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		75D7D0DD21990F2A00B6242F /* SiYouViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiYouViewController.h; sourceTree = "<group>"; };
@@ -205,19 +209,52 @@
 			path = shoukuan;
 			sourceTree = "<group>";
 		};
-		7593E18C2195238B00AA9BA5 /* XianSuo */ = {
+		75362CF2219A9FE700893AC3 /* 公有线索 */ = {
 			isa = PBXGroup;
 			children = (
 				7593E18D219523A400AA9BA5 /* XianSuoViewController.h */,
 				7593E18E219523A400AA9BA5 /* XianSuoViewController.m */,
+				75362CEF219A9FD900893AC3 /* AddGongYouViewController.h */,
+				75362CF0219A9FD900893AC3 /* AddGongYouViewController.m */,
+			);
+			path = "公有线索";
+			sourceTree = "<group>";
+		};
+		75362CF3219A9FED00893AC3 /* 私有线索 */ = {
+			isa = PBXGroup;
+			children = (
+				75D7D0DD21990F2A00B6242F /* SiYouViewController.h */,
+				75D7D0DE21990F2A00B6242F /* SiYouViewController.m */,
+				75362CF4219AA33200893AC3 /* AddSiYouViewController.h */,
+				75362CF5219AA33200893AC3 /* AddSiYouViewController.m */,
+			);
+			path = "私有线索";
+			sourceTree = "<group>";
+		};
+		75362D03219ABA6E00893AC3 /* 下啦菜单 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "下啦菜单";
+			sourceTree = "<group>";
+		};
+		75362D04219AC7BF00893AC3 /* address */ = {
+			isa = PBXGroup;
+			children = (
+				75362D05219AC7CD00893AC3 /* XFTreePopupView.h */,
+				75362D06219AC7CD00893AC3 /* XFTreePopupView.m */,
+			);
+			path = address;
+			sourceTree = "<group>";
+		};
+		7593E18C2195238B00AA9BA5 /* XianSuo */ = {
+			isa = PBXGroup;
+			children = (
+				75362CF3219A9FED00893AC3 /* 私有线索 */,
+				75362CF2219A9FE700893AC3 /* 公有线索 */,
 				7593E19C21954B4600AA9BA5 /* GongYouXianSuoCell.h */,
 				7593E19D21954B4600AA9BA5 /* GongYouXianSuoCell.m */,
 				7593E19E21954B4600AA9BA5 /* GongYouXianSuoCell.xib */,
-				75D7D0DD21990F2A00B6242F /* SiYouViewController.h */,
-				75D7D0DE21990F2A00B6242F /* SiYouViewController.m */,
-				7593E1A121954CE300AA9BA5 /* SiYouXianSuoCell.h */,
-				7593E1A221954CE300AA9BA5 /* SiYouXianSuoCell.m */,
-				7593E1A321954CE300AA9BA5 /* SiYouXianSuoCell.xib */,
 			);
 			path = XianSuo;
 			sourceTree = "<group>";
@@ -285,6 +322,8 @@
 		75F974372192700400F96078 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				75362D04219AC7BF00893AC3 /* address */,
+				75362D03219ABA6E00893AC3 /* 下啦菜单 */,
 				75F974382192701800F96078 /* Button */,
 				75F974392192702C00F96078 /* Manager.h */,
 				75F9743A2192702C00F96078 /* Manager.m */,
@@ -522,7 +561,6 @@
 				75F9740F21926D8C00F96078 /* Assets.xcassets in Resources */,
 				7593E1A021954B4600AA9BA5 /* GongYouXianSuoCell.xib in Resources */,
 				75F9740D21926D8B00F96078 /* Main.storyboard in Resources */,
-				7593E1A521954CE300AA9BA5 /* SiYouXianSuoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,11 +590,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SRM系统/Pods-SRM系统-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/PGDatePicker/PGDatePicker/PGDatePicker.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PGDatePicker.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -604,8 +644,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7593E19821952E8200AA9BA5 /* UserViewController.m in Sources */,
+				75362CF1219A9FD900893AC3 /* AddGongYouViewController.m in Sources */,
 				75F9746B2192729D00F96078 /* CustomButton.m in Sources */,
 				75F974592192718300F96078 /* C_ViewController.m in Sources */,
+				75362CF6219AA33200893AC3 /* AddSiYouViewController.m in Sources */,
 				75F97443219270AF00F96078 /* RegisterViewController.m in Sources */,
 				75F974402192709F00F96078 /* LoginViewController.m in Sources */,
 				75F97446219270BF00F96078 /* GetPasswordViewController.m in Sources */,
@@ -619,6 +661,7 @@
 				75D7D0DF21990F2A00B6242F /* SiYouViewController.m in Sources */,
 				75362C8B2199627900893AC3 /* HeTongViewController.m in Sources */,
 				75362C8E2199768D00893AC3 /* GouTongJiLuViewController.m in Sources */,
+				75362D07219AC7CD00893AC3 /* XFTreePopupView.m in Sources */,
 				7593E1A821955C7500AA9BA5 /* Model.m in Sources */,
 				7593E18F219523A400AA9BA5 /* XianSuoViewController.m in Sources */,
 				75F9743B2192702C00F96078 /* Manager.m in Sources */,
@@ -628,7 +671,6 @@
 				75F97468219271E400F96078 /* Center_ViewController.m in Sources */,
 				75F9745F219271AA00F96078 /* B_ViewController.m in Sources */,
 				75F974562192717300F96078 /* D_ViewController.m in Sources */,
-				7593E1A421954CE300AA9BA5 /* SiYouXianSuoCell.m in Sources */,
 				75F9740721926D8B00F96078 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
