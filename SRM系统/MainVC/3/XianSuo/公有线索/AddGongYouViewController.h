@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AddGongYouViewController : UIViewController
 
+
+@property(nonatomic,strong)Model *model;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

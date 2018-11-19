@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "huabanfuben.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "huabanfuben.png",
       "scale" : "2x"
     },
     {

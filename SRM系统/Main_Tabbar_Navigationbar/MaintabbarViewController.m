@@ -52,8 +52,6 @@
         bbb.tabBarItem.selectedImage = [UIImage imageNamed:@"02"];
         
         
-        
-        
         Center_ViewController *centerVc = [[Center_ViewController alloc]init];
         //MainNavigationViewController *center = [[MainNavigationViewController alloc]initWithRootViewController:centerVc];
         centerVc.tabBarItem.image = [UIImage imageNamed:@"3"];

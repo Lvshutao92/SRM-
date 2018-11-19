@@ -1,8 +1,8 @@
 //
-//  GouTongJiLuViewController.h
+//  XianSuoDetails_Two_ViewController.h
 //  SRM系统
 //
-//  Created by 吕书涛 on 2018/11/12.
+//  Created by 吕书涛 on 2018/11/15.
 //  Copyright © 2018 吕书涛. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GouTongJiLuViewController : UIViewController
+@interface XianSuoDetails_Two_ViewController : UIViewController
 
 @end
 

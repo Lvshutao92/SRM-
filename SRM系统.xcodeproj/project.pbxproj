@@ -10,16 +10,24 @@
 		752FEDB12194230C0060D029 /* MOLoadHttpsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 752FEDB02194230C0060D029 /* MOLoadHttpsData.m */; };
 		75362C87219946DC00893AC3 /* JiHuiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362C86219946DC00893AC3 /* JiHuiViewController.m */; };
 		75362C8B2199627900893AC3 /* HeTongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362C8A2199627900893AC3 /* HeTongViewController.m */; };
-		75362C8E2199768D00893AC3 /* GouTongJiLuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362C8D2199768D00893AC3 /* GouTongJiLuViewController.m */; };
 		75362C92219978A700893AC3 /* ShouKuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362C91219978A700893AC3 /* ShouKuanViewController.m */; };
 		75362CF1219A9FD900893AC3 /* AddGongYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362CF0219A9FD900893AC3 /* AddGongYouViewController.m */; };
 		75362CF6219AA33200893AC3 /* AddSiYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362CF5219AA33200893AC3 /* AddSiYouViewController.m */; };
 		75362D07219AC7CD00893AC3 /* XFTreePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75362D06219AC7CD00893AC3 /* XFTreePopupView.m */; };
+		755F64A821A26E0A007331DA /* GouTongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755F64A721A26E0A007331DA /* GouTongViewController.m */; };
 		7593E18F219523A400AA9BA5 /* XianSuoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7593E18E219523A400AA9BA5 /* XianSuoViewController.m */; };
 		7593E19821952E8200AA9BA5 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7593E19721952E8200AA9BA5 /* UserViewController.m */; };
 		7593E19F21954B4600AA9BA5 /* GongYouXianSuoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7593E19D21954B4600AA9BA5 /* GongYouXianSuoCell.m */; };
 		7593E1A021954B4600AA9BA5 /* GongYouXianSuoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7593E19E21954B4600AA9BA5 /* GongYouXianSuoCell.xib */; };
 		7593E1A821955C7500AA9BA5 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7593E1A721955C7500AA9BA5 /* Model.m */; };
+		759A8D40219C0970006F58F7 /* AddGongYouConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 759A8D3F219C0970006F58F7 /* AddGongYouConnectViewController.m */; };
+		75A00B79219E60AE00815212 /* GTJL_Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A00B77219E60AE00815212 /* GTJL_Cell.m */; };
+		75A00B7A219E60AE00815212 /* GTJL_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A00B78219E60AE00815212 /* GTJL_Cell.xib */; };
+		75A00C54219EC2AC00815212 /* aaa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75A00C53219EC2AC00815212 /* aaa.jpg */; };
+		75C959DF219CF93500501E8E /* SQCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C959DD219CF93500501E8E /* SQCustomButton.m */; };
+		75C959E2219D0AC400501E8E /* ADD_GouTongJiLu_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C959E1219D0AC400501E8E /* ADD_GouTongJiLu_ViewController.m */; };
+		75C959E6219D1AEF00501E8E /* XianSuoDetails_One_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C959E5219D1AEF00501E8E /* XianSuoDetails_One_ViewController.m */; };
+		75C959E9219D1AFF00501E8E /* XianSuoDetails_Two_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C959E8219D1AFF00501E8E /* XianSuoDetails_Two_ViewController.m */; };
 		75D7D0DF21990F2A00B6242F /* SiYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D7D0DE21990F2A00B6242F /* SiYouViewController.m */; };
 		75F9740721926D8B00F96078 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F9740621926D8B00F96078 /* AppDelegate.m */; };
 		75F9740D21926D8B00F96078 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75F9740B21926D8B00F96078 /* Main.storyboard */; };
@@ -70,8 +78,6 @@
 		75362C86219946DC00893AC3 /* JiHuiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiHuiViewController.m; sourceTree = "<group>"; };
 		75362C892199627900893AC3 /* HeTongViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeTongViewController.h; sourceTree = "<group>"; };
 		75362C8A2199627900893AC3 /* HeTongViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeTongViewController.m; sourceTree = "<group>"; };
-		75362C8C2199768D00893AC3 /* GouTongJiLuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GouTongJiLuViewController.h; sourceTree = "<group>"; };
-		75362C8D2199768D00893AC3 /* GouTongJiLuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GouTongJiLuViewController.m; sourceTree = "<group>"; };
 		75362C90219978A700893AC3 /* ShouKuanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShouKuanViewController.h; sourceTree = "<group>"; };
 		75362C91219978A700893AC3 /* ShouKuanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShouKuanViewController.m; sourceTree = "<group>"; };
 		75362CEF219A9FD900893AC3 /* AddGongYouViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddGongYouViewController.h; sourceTree = "<group>"; };
@@ -80,6 +86,8 @@
 		75362CF5219AA33200893AC3 /* AddSiYouViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSiYouViewController.m; sourceTree = "<group>"; };
 		75362D05219AC7CD00893AC3 /* XFTreePopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFTreePopupView.h; sourceTree = "<group>"; };
 		75362D06219AC7CD00893AC3 /* XFTreePopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFTreePopupView.m; sourceTree = "<group>"; };
+		755F64A621A26E09007331DA /* GouTongViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GouTongViewController.h; sourceTree = "<group>"; };
+		755F64A721A26E0A007331DA /* GouTongViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GouTongViewController.m; sourceTree = "<group>"; };
 		7593E18D219523A400AA9BA5 /* XianSuoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XianSuoViewController.h; sourceTree = "<group>"; };
 		7593E18E219523A400AA9BA5 /* XianSuoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XianSuoViewController.m; sourceTree = "<group>"; };
 		7593E19621952E8200AA9BA5 /* UserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
@@ -89,6 +97,20 @@
 		7593E19E21954B4600AA9BA5 /* GongYouXianSuoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GongYouXianSuoCell.xib; sourceTree = "<group>"; };
 		7593E1A621955C7500AA9BA5 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		7593E1A721955C7500AA9BA5 /* Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		759A8D3E219C0970006F58F7 /* AddGongYouConnectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddGongYouConnectViewController.h; sourceTree = "<group>"; };
+		759A8D3F219C0970006F58F7 /* AddGongYouConnectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddGongYouConnectViewController.m; sourceTree = "<group>"; };
+		75A00B76219E60AE00815212 /* GTJL_Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTJL_Cell.h; sourceTree = "<group>"; };
+		75A00B77219E60AE00815212 /* GTJL_Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTJL_Cell.m; sourceTree = "<group>"; };
+		75A00B78219E60AE00815212 /* GTJL_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GTJL_Cell.xib; sourceTree = "<group>"; };
+		75A00C53219EC2AC00815212 /* aaa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa.jpg; sourceTree = "<group>"; };
+		75C959DD219CF93500501E8E /* SQCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQCustomButton.m; sourceTree = "<group>"; };
+		75C959DE219CF93500501E8E /* SQCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQCustomButton.h; sourceTree = "<group>"; };
+		75C959E0219D0AC400501E8E /* ADD_GouTongJiLu_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADD_GouTongJiLu_ViewController.h; sourceTree = "<group>"; };
+		75C959E1219D0AC400501E8E /* ADD_GouTongJiLu_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADD_GouTongJiLu_ViewController.m; sourceTree = "<group>"; };
+		75C959E4219D1AEF00501E8E /* XianSuoDetails_One_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XianSuoDetails_One_ViewController.h; sourceTree = "<group>"; };
+		75C959E5219D1AEF00501E8E /* XianSuoDetails_One_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XianSuoDetails_One_ViewController.m; sourceTree = "<group>"; };
+		75C959E7219D1AFF00501E8E /* XianSuoDetails_Two_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XianSuoDetails_Two_ViewController.h; sourceTree = "<group>"; };
+		75C959E8219D1AFF00501E8E /* XianSuoDetails_Two_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XianSuoDetails_Two_ViewController.m; sourceTree = "<group>"; };
 		75D7D0DD21990F2A00B6242F /* SiYouViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiYouViewController.h; sourceTree = "<group>"; };
 		75D7D0DE21990F2A00B6242F /* SiYouViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SiYouViewController.m; sourceTree = "<group>"; };
 		75F9740221926D8B00F96078 /* SRM系统.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SRM系统.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +238,10 @@
 				7593E18E219523A400AA9BA5 /* XianSuoViewController.m */,
 				75362CEF219A9FD900893AC3 /* AddGongYouViewController.h */,
 				75362CF0219A9FD900893AC3 /* AddGongYouViewController.m */,
+				759A8D3E219C0970006F58F7 /* AddGongYouConnectViewController.h */,
+				759A8D3F219C0970006F58F7 /* AddGongYouConnectViewController.m */,
+				75C959E0219D0AC400501E8E /* ADD_GouTongJiLu_ViewController.h */,
+				75C959E1219D0AC400501E8E /* ADD_GouTongJiLu_ViewController.m */,
 			);
 			path = "公有线索";
 			sourceTree = "<group>";
@@ -250,6 +276,7 @@
 		7593E18C2195238B00AA9BA5 /* XianSuo */ = {
 			isa = PBXGroup;
 			children = (
+				75C959E3219D1A3600501E8E /* 线索详情 */,
 				75362CF3219A9FED00893AC3 /* 私有线索 */,
 				75362CF2219A9FE700893AC3 /* 公有线索 */,
 				7593E19C21954B4600AA9BA5 /* GongYouXianSuoCell.h */,
@@ -257,6 +284,17 @@
 				7593E19E21954B4600AA9BA5 /* GongYouXianSuoCell.xib */,
 			);
 			path = XianSuo;
+			sourceTree = "<group>";
+		};
+		75C959E3219D1A3600501E8E /* 线索详情 */ = {
+			isa = PBXGroup;
+			children = (
+				75C959E4219D1AEF00501E8E /* XianSuoDetails_One_ViewController.h */,
+				75C959E5219D1AEF00501E8E /* XianSuoDetails_One_ViewController.m */,
+				75C959E7219D1AFF00501E8E /* XianSuoDetails_Two_ViewController.h */,
+				75C959E8219D1AFF00501E8E /* XianSuoDetails_Two_ViewController.m */,
+			);
+			path = "线索详情";
 			sourceTree = "<group>";
 		};
 		75F973F921926D8B00F96078 = {
@@ -337,6 +375,8 @@
 		75F974382192701800F96078 /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				75C959DE219CF93500501E8E /* SQCustomButton.h */,
+				75C959DD219CF93500501E8E /* SQCustomButton.m */,
 				75F974692192729D00F96078 /* CustomButton.h */,
 				75F9746A2192729D00F96078 /* CustomButton.m */,
 			);
@@ -346,6 +386,7 @@
 		75F9743D2192707300F96078 /* Login_Register_GetPassword */ = {
 			isa = PBXGroup;
 			children = (
+				75A00C53219EC2AC00815212 /* aaa.jpg */,
 				75F9743E2192709F00F96078 /* LoginViewController.h */,
 				75F9743F2192709F00F96078 /* LoginViewController.m */,
 				75F97441219270AF00F96078 /* RegisterViewController.h */,
@@ -393,12 +434,15 @@
 			children = (
 				75F9745D219271AA00F96078 /* B_ViewController.h */,
 				75F9745E219271AA00F96078 /* B_ViewController.m */,
-				75F97460219271C100F96078 /* B_TableViewCell.h */,
-				75F97461219271C100F96078 /* B_TableViewCell.m */,
 				75F97463219271D400F96078 /* TXLDetailsViewController.h */,
 				75F97464219271D400F96078 /* TXLDetailsViewController.m */,
-				75362C8C2199768D00893AC3 /* GouTongJiLuViewController.h */,
-				75362C8D2199768D00893AC3 /* GouTongJiLuViewController.m */,
+				755F64A621A26E09007331DA /* GouTongViewController.h */,
+				755F64A721A26E0A007331DA /* GouTongViewController.m */,
+				75A00B76219E60AE00815212 /* GTJL_Cell.h */,
+				75A00B77219E60AE00815212 /* GTJL_Cell.m */,
+				75A00B78219E60AE00815212 /* GTJL_Cell.xib */,
+				75F97460219271C100F96078 /* B_TableViewCell.h */,
+				75F97461219271C100F96078 /* B_TableViewCell.m */,
 			);
 			path = 2;
 			sourceTree = "<group>";
@@ -558,6 +602,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F9741221926D8C00F96078 /* LaunchScreen.storyboard in Resources */,
+				75A00C54219EC2AC00815212 /* aaa.jpg in Resources */,
+				75A00B7A219E60AE00815212 /* GTJL_Cell.xib in Resources */,
 				75F9740F21926D8C00F96078 /* Assets.xcassets in Resources */,
 				7593E1A021954B4600AA9BA5 /* GongYouXianSuoCell.xib in Resources */,
 				75F9740D21926D8B00F96078 /* Main.storyboard in Resources */,
@@ -643,6 +689,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A00B79219E60AE00815212 /* GTJL_Cell.m in Sources */,
 				7593E19821952E8200AA9BA5 /* UserViewController.m in Sources */,
 				75362CF1219A9FD900893AC3 /* AddGongYouViewController.m in Sources */,
 				75F9746B2192729D00F96078 /* CustomButton.m in Sources */,
@@ -652,25 +699,30 @@
 				75F974402192709F00F96078 /* LoginViewController.m in Sources */,
 				75F97446219270BF00F96078 /* GetPasswordViewController.m in Sources */,
 				75F97462219271C100F96078 /* B_TableViewCell.m in Sources */,
+				75C959DF219CF93500501E8E /* SQCustomButton.m in Sources */,
 				752FEDB12194230C0060D029 /* MOLoadHttpsData.m in Sources */,
 				75362C87219946DC00893AC3 /* JiHuiViewController.m in Sources */,
 				75362C92219978A700893AC3 /* ShouKuanViewController.m in Sources */,
 				75F9745C2192719500F96078 /* A_ViewController.m in Sources */,
 				75F97465219271D400F96078 /* TXLDetailsViewController.m in Sources */,
 				75F9741521926D8C00F96078 /* main.m in Sources */,
+				75C959E2219D0AC400501E8E /* ADD_GouTongJiLu_ViewController.m in Sources */,
 				75D7D0DF21990F2A00B6242F /* SiYouViewController.m in Sources */,
 				75362C8B2199627900893AC3 /* HeTongViewController.m in Sources */,
-				75362C8E2199768D00893AC3 /* GouTongJiLuViewController.m in Sources */,
 				75362D07219AC7CD00893AC3 /* XFTreePopupView.m in Sources */,
+				75C959E6219D1AEF00501E8E /* XianSuoDetails_One_ViewController.m in Sources */,
 				7593E1A821955C7500AA9BA5 /* Model.m in Sources */,
 				7593E18F219523A400AA9BA5 /* XianSuoViewController.m in Sources */,
 				75F9743B2192702C00F96078 /* Manager.m in Sources */,
 				75F9744D2192712D00F96078 /* MaintabbarViewController.m in Sources */,
 				7593E19F21954B4600AA9BA5 /* GongYouXianSuoCell.m in Sources */,
 				75F9744A2192711800F96078 /* MainNavigationViewController.m in Sources */,
+				75C959E9219D1AFF00501E8E /* XianSuoDetails_Two_ViewController.m in Sources */,
 				75F97468219271E400F96078 /* Center_ViewController.m in Sources */,
 				75F9745F219271AA00F96078 /* B_ViewController.m in Sources */,
 				75F974562192717300F96078 /* D_ViewController.m in Sources */,
+				759A8D40219C0970006F58F7 /* AddGongYouConnectViewController.m in Sources */,
+				755F64A821A26E0A007331DA /* GouTongViewController.m in Sources */,
 				75F9740721926D8B00F96078 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

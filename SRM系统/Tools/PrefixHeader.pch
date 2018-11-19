@@ -22,18 +22,26 @@
 #import <Masonry/Masonry.h>
 #import <FLAnimatedImage/FLAnimatedImage.h>
 
+//发短信
+#import <MessageUI/MessageUI.h>
+
+
 #import "Model.h"
 
 #import "MaintabbarViewController.h"
 #import "MOLoadHttpsData.h"
 #import "Manager.h"
 #import "MainNavigationViewController.h"
-#import "CustomButton.h"
 #import "LoginViewController.h"
+
+
+#import "SQCustomButton.h"
+#import "CustomButton.h"
+
+
 
 #import <PGDatePicker/PGDatePicker.h>
 #import <PGDatePickManager.h>
-
 #import "XFTreePopupView.h"
 
 //判断 iOS 8 或更高的系统版本

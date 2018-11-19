@@ -31,13 +31,15 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         //创建联系人姓名Lable对象
-        self.nameLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 100, 20)];
+        self.nameLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 160, 20)];
         self.nameLable.adjustsFontSizeToFitWidth = YES;
+        self.nameLable.font = FONT(18);
         [self.contentView addSubview:self.nameLable];
         //创建电话号码对象
-        self.phoneNumberLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 40, 100, 20)];
+        self.phoneNumberLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 40, 160, 20)];
         self.phoneNumberLable.adjustsFontSizeToFitWidth = YES;
         self.phoneNumberLable.textColor = [UIColor lightGrayColor];
+        self.phoneNumberLable.font = FONT(14);
         [self.contentView addSubview:self.phoneNumberLable];
         //
         self.btn1 = [UIButton buttonWithType:UIButtonTypeCustom];

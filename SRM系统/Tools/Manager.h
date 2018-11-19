@@ -67,10 +67,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 //处理返回的数据类型
 + (NSDictionary *)returndictiondata:(NSData *)responseObject;
+
 + (void)requestPOSTWithURLStr:(NSString *)urlStr
+                       finish:(void(^)(id responseObject))finish
+                      enError:(void(^)(NSError *error))enError;
+
++ (void)requestGETWithURLStr:(NSString *)urlStr
                      paramDic:(NSDictionary *)paramDic
                        finish:(void(^)(id responseObject))finish
                       enError:(void(^)(NSError *error))enError;
+
+
+
++ (NSString *)dictionToString:(NSDictionary *)dic string:(NSString *)strurl;
+
+//获取当前的时间
+
++(NSString*)getCurrentTimes;
++(NSString*)getCurrentTimesAAAAAAA;
+
+
+
+@property(nonatomic,strong)NSString *idXianSuoString;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

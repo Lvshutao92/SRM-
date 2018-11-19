@@ -46,7 +46,6 @@ static Manager *manager = nil;
     return mutStr;
 }
 + (void)requestPOSTWithURLStr:(NSString *)urlStr
-                     paramDic:(NSDictionary *)paramDic
                        finish:(void(^)(id responseObject))finish
                       enError:(void(^)(NSError *error))enError{
     
@@ -54,11 +53,14 @@ static Manager *manager = nil;
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
 
-    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//    NSLog(@"=======%@",[Manager redingwenjianming:@"msg"]);
+    [manager.requestSerializer setValue:[Manager redingwenjianming:@"msg"] forHTTPHeaderField:@"Authorization"];
+
+    [manager.requestSerializer setValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
 
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"image/jpeg",@"text/plain", nil];
 
-    [manager POST:urlStr parameters:paramDic progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager POST:urlStr parameters:@{} progress:^(NSProgress * _Nonnull uploadProgress) {
 
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -70,6 +72,80 @@ static Manager *manager = nil;
     
 }
 
+
++ (NSString *)dictionToString:(NSDictionary *)dic string:(NSString *)strurl{
+    NSString *urlString = @"";
+    
+    NSArray *arr = [dic allKeys];
+    
+    
+    for (NSInteger i = 0; i < arr.count; i++) {
+        
+        NSString *key    = arr[i];
+        NSString *value  = [dic objectForKey:arr[i]];
+        
+        NSString *str = [NSString stringWithFormat:@"%@=%@&",key,value];
+        
+        urlString = [urlString stringByAppendingFormat:@"%@",str];
+    }
+    
+    NSString *str111 = [NSString stringWithFormat:@"%@%@",strurl,[urlString substringToIndex:urlString.length-1]];
+    NSString *url = [str111 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    return url;
+}
+
+//获取当前的时间
+
++(NSString*)getCurrentTimes{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    
+    NSDate *datenow = [NSDate date];
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    return currentTimeString;
+}
++(NSString*)getCurrentTimesAAAAAAA{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
+    
+    NSDate *datenow = [NSDate date];
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    return currentTimeString;
+}
+
+
+
++ (void)requestGETWithURLStr:(NSString *)urlStr
+                     paramDic:(NSDictionary *)paramDic
+                       finish:(void(^)(id responseObject))finish
+                      enError:(void(^)(NSError *error))enError{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager.requestSerializer setValue:[Manager redingwenjianming:@"msg"] forHTTPHeaderField:@"Authorization"];
+
+    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"image/jpeg",@"text/plain", nil];
+    
+    [manager GET:urlStr parameters:paramDic progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        finish(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        enError(error);
+    }];
+ 
+}
 
 
 

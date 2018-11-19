@@ -1,22 +1,22 @@
 //
-//  GouTongJiLuViewController.m
+//  XianSuoDetails_Two_ViewController.m
 //  SRM系统
 //
-//  Created by 吕书涛 on 2018/11/12.
+//  Created by 吕书涛 on 2018/11/15.
 //  Copyright © 2018 吕书涛. All rights reserved.
 //
 
-#import "GouTongJiLuViewController.h"
+#import "XianSuoDetails_Two_ViewController.h"
 
-@interface GouTongJiLuViewController ()
+@interface XianSuoDetails_Two_ViewController ()
 
 @end
 
-@implementation GouTongJiLuViewController
+@implementation XianSuoDetails_Two_ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor orangeColor];
+    NSLog(@"-----%@",[Manager sharedManager].idXianSuoString);
     // Do any additional setup after loading the view.
 }
 

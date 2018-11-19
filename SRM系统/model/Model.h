@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Model : NSObject
 //-------公有线索
 @property(nonatomic,strong)NSString *customerShortName;
-
+@property(nonatomic,strong)NSString *customerFullName;
 @property(nonatomic,strong)NSString *customerIndustry;
 
 @property(nonatomic,strong)NSString *customerScale;
@@ -40,27 +40,41 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)NSString *id;
 
+@property(nonatomic,strong)NSString *leadGetDate;
+@property(nonatomic,strong)NSString *customerProvinceCode;
+@property(nonatomic,strong)NSString *customerCityCode;
+@property(nonatomic,strong)NSString *customerDistrictCode;
+@property(nonatomic,strong)NSString *customerIntroduce;
 
+@property(nonatomic,strong)NSString *followPersonName;
+@property(nonatomic,strong)NSString *followUserId;
+@property(nonatomic,strong)NSString *realName;
+@property(nonatomic,strong)NSString *personName;
 //
 @property(nonatomic,strong)NSString *key;
 @property(nonatomic,strong)NSString *label;
+@property(nonatomic,strong)NSString *name;
 
-//-------------私有线索
+@property(nonatomic,strong)NSString *birthday;
 
-
-//@property(nonatomic,strong)NSString *leadCreateDate;
-//@property(nonatomic,strong)NSString *leadCreateDate;
-//@property(nonatomic,strong)NSString *leadCreateDate;
-//@property(nonatomic,strong)NSString *leadCreateDate;
-//@property(nonatomic,strong)NSString *leadCreateDate;
-//@property(nonatomic,strong)NSString *leadCreateDate;
-
-
-
+@property(nonatomic,strong)NSString *email;
+@property(nonatomic,strong)NSString *mainPerson;
+@property(nonatomic,strong)NSString *mobile;
+@property(nonatomic,strong)NSString *nickName;
+@property(nonatomic,strong)NSString *position;
+@property(nonatomic,strong)NSString *sex;
+@property(nonatomic,strong)NSString *wechat;
 
 
 
-
+@property(nonatomic,strong)NSString *communicateFile;
+@property(nonatomic,strong)NSString *communicateResult;
+@property(nonatomic,strong)NSString *communicateStage;
+@property(nonatomic,strong)NSString *communicateTime;
+@property(nonatomic,strong)NSString *communicateType;
+@property(nonatomic,strong)NSString *contactsPersonId;
+@property(nonatomic,strong)NSString *contactsPersonName;
+@property(nonatomic,strong)NSString *createTime;
 
 
 

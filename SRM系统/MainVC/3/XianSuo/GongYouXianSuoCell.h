@@ -32,7 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 
-@property (weak, nonatomic) IBOutlet UIButton *btn2;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn3;
 

@@ -27,21 +27,28 @@
         self.text1.text = [Manager redingwenjianming:@"username"];
         self.text2.text = [Manager redingwenjianming:@"password"];
     }
-    
 }
 - (void)clickLogin{
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
+    _hud.label.text = NSLocalizedString(@"登录中...", @"HUD loading title");
     
-    NSString *urlstr = [NSString stringWithFormat:@"%@?userName=%@&password=%@",KURLNSString(@"login"),self.text1.text,self.text2.text];
-    [Manager requestPOSTWithURLStr:urlstr paramDic:@{} finish:^(id  _Nonnull responseObject) {
+    NSDictionary *dic = @{@"userName":self.text1.text,
+                          @"password":self.text2.text,};
+    
+    
+//    NSLog(@"--------%@",[Manager dictionToString:dic string:KURLNSString(@"login?")]);
+    [Manager requestPOSTWithURLStr:[Manager dictionToString:dic string:KURLNSString(@"login?")] finish:^(id  _Nonnull responseObject) {
         NSDictionary *diction = [Manager returndictiondata:responseObject];
-        //NSLog(@"%@-----%@------%@",[diction objectForKey:@"code"],[diction objectForKey:@"msg"],diction);
+        
+//        NSLog(@"--------------%@",diction);
+        
         [self->_hud hideAnimated:YES];
         
         if ([[diction objectForKey:@"code"]isEqualToString:@"success"]) {
             [Manager writewenjianming:@"username" content:self.text1.text];
             [Manager writewenjianming:@"password" content:self.text2.text];
+            [Manager writewenjianming:@"msg" content:[diction objectForKey:@"msg"]];
+
             NSDictionary *dict = [[NSDictionary alloc]init];
             NSNotification *notification =[NSNotification notificationWithName:@"hidden_login" object:nil userInfo:dict];
             [[NSNotificationCenter defaultCenter] postNotification:notification];
@@ -85,11 +92,18 @@
 
 
 - (void)setBackgroundImage{
-    UIImage * image = [UIImage imageNamed:@"bg2"];
-    UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    imageView.image = image;
-    imageView.userInteractionEnabled = YES;
-    [self.view addSubview:imageView];
+    
+    
+    
+    UIImage * image = [UIImage imageNamed:@"aaa.jpg"];
+    UIImageView * imageView0 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    imageView0.image = image;
+    imageView0.userInteractionEnabled = YES;
+    [self.view addSubview:imageView0];
+    UIView *imageView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    imageView.backgroundColor = [UIColor colorWithWhite:.3 alpha:.5];
+    [imageView0 addSubview:imageView];
+    
     
     
     UIImageView * imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(50, (SCREEN_HEIGHT/2-240)/2, SCREEN_WIDTH-100, 100)];

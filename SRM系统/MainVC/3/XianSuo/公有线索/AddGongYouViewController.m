@@ -19,12 +19,35 @@
     UITextField *text5;
     UITextField *text6;
     UITextField *text7;
+    
     UITextField *text8;
+    UITextField *text9;
+    
+    
+    
+    UITextField *text10;
+    
+    
     
     UITextView *textview;
     
     UIWindow *window;
     NSString *str;
+    
+    NSString *addressString;
+    NSString *addressString1;
+
+    NSString *addressString2;
+
+//    NSString *sheng;
+//    NSString *shi;
+    NSString *shiCode;
+//    NSString *qu;
+    NSString *shengCode;
+    NSString *quCode;
+ 
+    
+    NSString *addressOrother;
 }
 @property(nonatomic,strong)NSMutableArray *dataArray;
 @property(nonatomic,strong)NSMutableArray *dataArray1;
@@ -49,7 +72,50 @@
     self.navigationItem.rightBarButtonItem = bar;
     [self setUpView];
     
-    window = [[UIWindow alloc] initWithFrame:CGRectMake(-SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    addressString = @"1";
+    addressString1 = @"";
+    addressString2 = @"";
+    
+    text1.text = [Manager getCurrentTimes];
+    text2.text = @"";
+    text3.text = @"";
+    text4.text = @"";
+    text5.text = @"";
+    text6.text = @"";
+    shengCode = @"";
+    shiCode = @"";
+    quCode = @"";
+    text10.text = @"";
+    textview.text = @"";
+    
+    if ([self.navigationItem.title isEqualToString:@"编辑公有线索"]) {
+        text1.text = self.model.leadGetDate;
+        text2.text = self.model.leadSource;
+        text3.text = self.model.customerShortName;
+        
+        text4.text = self.model.customerFullName;
+        text5.text = self.model.customerScale;
+        text6.text = self.model.customerIndustry;
+        
+        
+        
+        text7.text = self.model.customerProvinceName;
+        text8.text = self.model.customerCityName;
+        text9.text = self.model.customerDistrictName;
+        
+        shengCode = self.model.customerProvinceCode;
+        shiCode = self.model.customerCityCode;
+        quCode = self.model.customerDistrictCode;
+        
+        addressString1 = self.model.customerProvinceCode;
+        addressString2 = self.model.customerCityCode;
+        
+        
+        text10.text = self.model.customerAddress;
+        textview.text = self.model.customerIntroduce;
+    }
+  
+    window = [[UIWindow alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
     window.backgroundColor = [UIColor colorWithWhite:.3 alpha:.5];
     window.windowLevel = UIWindowLevelNormal;
     UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
@@ -57,65 +123,154 @@
     [window addGestureRecognizer:tap];
     [window makeKeyAndVisible];
     
-    self.tableview = [[UITableView alloc]initWithFrame:CGRectMake(50, SCREEN_HEIGHT/2-180, SCREEN_WIDTH-100, 360)];
+    self.tableview = [[UITableView alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT-350-10-50, SCREEN_WIDTH-20, 350)];
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-    LRViewBorderRadius(self.tableview, 8, 0, [UIColor clearColor]);
     [self.tableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [window addSubview:self.tableview];
-    UIView *vv = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH-100, 1)];
+    UIView *vv = [[UIView alloc]initWithFrame:CGRectMake(10,0, SCREEN_WIDTH-20, 0.1)];
     self.tableview.tableFooterView = vv;
     
+    UILabel *hea = [[UILabel alloc]initWithFrame:CGRectMake(10,SCREEN_HEIGHT-451, SCREEN_WIDTH-20, 40)];
+    hea.text = @"请选择";
+     hea.backgroundColor = [UIColor whiteColor];
+    hea.textAlignment = NSTextAlignmentCenter;
+    [window addSubview: hea];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(10, SCREEN_HEIGHT-10-40, SCREEN_WIDTH-20, 40);
+    [btn setTitle:@"取消" forState:UIControlStateNormal];
+    btn.backgroundColor = [UIColor whiteColor];
+    [btn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [window addSubview:btn];
+}
+- (void)cancel{
+    [UIView animateWithDuration:.3 animations:^{
+        self->window.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+    }];
 }
 
-- (void)lod1{
-    LRWeakSelf(self);
-    [Manager requestPOSTWithURLStr:KURLNSString(@"config/dictionary/data/getDataListByType?type=lead_source") paramDic:@{} finish:^(id  _Nonnull responseObject) {
-        NSDictionary *diction = [Manager returndictiondata:responseObject];
-        NSMutableArray *arr = (NSMutableArray *)diction;
-        [weakSelf.dataArray removeAllObjects];
-        for (NSDictionary *dic in arr) {
-            Model *model = [Model mj_objectWithKeyValues:dic];
-            [weakSelf.dataArray addObject:model];
-        }
-        //NSLog(@"-----------%@",diction);
-        [weakSelf.tableview reloadData];
-    } enError:^(NSError * _Nonnull error) {
-       NSLog(@"-----------%@",error);
-    }];
+
+
+- (void)clicksave{
+    if ([self.navigationItem.title isEqualToString:@"新增公有线索"]) {
+        [self addgongyou];
+    }else{
+        [self editgongyou];
+    }
 }
-- (void)lod2{
-    LRWeakSelf(self);
-    [Manager requestPOSTWithURLStr:KURLNSString(@"config/dictionary/data/getDataListByType?type=customer_scale") paramDic:@{} finish:^(id  _Nonnull responseObject) {
-        NSDictionary *diction = [Manager returndictiondata:responseObject];
-        NSMutableArray *arr = (NSMutableArray *)diction;
-        [weakSelf.dataArray removeAllObjects];
-        for (NSDictionary *dic in arr) {
-            Model *model = [Model mj_objectWithKeyValues:dic];
-            [weakSelf.dataArray addObject:model];
-        }
-        //NSLog(@"-----------%@",diction);
-        [weakSelf.tableview reloadData];
-    } enError:^(NSError * _Nonnull error) {
-        NSLog(@"-----------%@",error);
-    }];
+- (void)addgongyou{
+    if (text4.text==nil) {
+        text4.text = @"";
+    }
+    if (text5.text==nil) {
+        text5.text = @"";
+    }
+    if (text6.text==nil) {
+        text6.text = @"";
+    }
+    if (text10.text==nil) {
+        text10.text = @"";
+    }
+    if (textview.text==nil) {
+        textview.text = @"";
+    }
+    if (shengCode==nil) {
+        shengCode = @"";
+    }
+    if (shiCode==nil) {
+        shiCode = @"";
+    }
+    if (quCode==nil) {
+        quCode = @"";
+    }
+    if (text1.text.length >0 && text2.text.length >0 && text3.text.length >0) {
+        NSDictionary *dic = @{@"leadGetDate":text1.text,
+                              @"leadSource":text2.text,
+                              @"customerShortName":text3.text,
+                              @"customerFullName":text4.text,
+                              @"customerScale":text5.text,
+                              @"customerIndustry":text6.text,
+                              @"customerProvinceCode":shengCode,
+                              @"customerCityCode":shiCode,
+                              @"customerDistrictCode":quCode,
+                              @"customerAddress":text10.text,
+                              @"customerIntroduce":textview.text
+                              };
+        [Manager requestPOSTWithURLStr:[Manager dictionToString:dic string:KURLNSString(@"lead/public/insert?")] finish:^(id  _Nonnull responseObject) {
+            NSDictionary *diction = [Manager returndictiondata:responseObject];
+            if ([[diction objectForKey:@"code"]isEqualToString:@"success"]) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"新增成功" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *centain = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+                [alert addAction:centain];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            //NSLog(@"------%@",diction);
+        } enError:^(NSError * _Nonnull error) {
+            NSLog(@"%@",error);
+        }];
+    }
 }
-- (void)lod3{
-    LRWeakSelf(self);
-    [Manager requestPOSTWithURLStr:KURLNSString(@"config/dictionary/data/getDataListByType?type=customer_industry") paramDic:@{} finish:^(id  _Nonnull responseObject) {
-        NSDictionary *diction = [Manager returndictiondata:responseObject];
-        NSMutableArray *arr = (NSMutableArray *)diction;
-        [weakSelf.dataArray removeAllObjects];
-        for (NSDictionary *dic in arr) {
-            Model *model = [Model mj_objectWithKeyValues:dic];
-            [weakSelf.dataArray addObject:model];
-        }
-        //NSLog(@"-----------%@",diction);
-        [weakSelf.tableview reloadData];
-    } enError:^(NSError * _Nonnull error) {
-        NSLog(@"-----------%@",error);
-    }];
+- (void)editgongyou{
+    if (text4.text==nil) {
+        text4.text = @"";
+    }
+    if (text5.text==nil) {
+        text5.text = @"";
+    }
+    if (text6.text==nil) {
+        text6.text = @"";
+    }
+    if (text10.text==nil) {
+        text10.text = @"";
+    }
+    if (textview.text==nil) {
+        textview.text = @"";
+    }
+    if (shengCode==nil) {
+        shengCode = @"";
+    }
+    if (shiCode==nil) {
+        shiCode = @"";
+    }
+    if (quCode==nil) {
+        quCode = @"";
+    }
+    if (text1.text.length >0 && text2.text.length >0 && text3.text.length >0) {
+        NSDictionary *dic = @{@"leadGetDate":text1.text,
+                              @"leadSource":text2.text,
+                              @"customerShortName":text3.text,
+                              @"customerFullName":text4.text,
+                              @"customerScale":text5.text,
+                              @"customerIndustry":text6.text,
+                              @"customerProvinceCode":shengCode,
+                              @"customerCityCode":shiCode,
+                              @"customerDistrictCode":quCode,
+                              @"customerAddress":text10.text,
+                              @"customerIntroduce":textview.text,
+                              @"id":self.model.id,
+                              @"leadNo":self.model.leadNo,
+                              };
+        [Manager requestPOSTWithURLStr:[Manager dictionToString:dic string:KURLNSString(@"lead/public/update?")] finish:^(id  _Nonnull responseObject) {
+            NSDictionary *diction = [Manager returndictiondata:responseObject];
+            if ([[diction objectForKey:@"code"]isEqualToString:@"success"]) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"编辑成功" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *centain = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+                [alert addAction:centain];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            //NSLog(@"------%@",diction);
+        } enError:^(NSError * _Nonnull error) {
+            NSLog(@"%@",error);
+        }];
+    }
 }
+
 
 
 
@@ -132,39 +287,77 @@
 }
 - (void)tapAction{
     [UIView animateWithDuration:.3 animations:^{
-        self->window.frame = CGRectMake(-SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        self->window.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
     }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     Model *model  =[self.dataArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = model.label;
+    
+    if ([addressOrother isEqualToString:@"1"]) {
+        cell.textLabel.text = model.label;
+    }else{
+        cell.textLabel.text = model.name;
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [UIView animateWithDuration:.3 animations:^{
-        self->window.frame = CGRectMake(-SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        self->window.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
     }];
     Model *model  =[self.dataArray objectAtIndex:indexPath.row];
+    
+    //NSLog(@"%@",model.key);
     if ([str isEqualToString:@"1"]) {
         text2.text = model.label;
     }else if ([str isEqualToString:@"2"]) {
         text5.text = model.label;
-    }else{
+    }else if ([str isEqualToString:@"3"]){
         text6.text = model.label;
+    }
+    
+    else if ([str isEqualToString:@"4"]){
+        text8.text = nil;
+        text9.text = nil;
+        shiCode = nil;
+        quCode = nil;
+        
+        text7.text = model.name;
+        addressString1 = model.id;
+        shengCode = model.id;
+        addressString2 = @"";
+        
+    }
+    else if ([str isEqualToString:@"5"]){
+        quCode=nil;
+        text9.text = nil;
+        
+        text8.text = model.name;
+        addressString2 = model.id;
+        shiCode = model.id;
+        
+    }
+    else if ([str isEqualToString:@"6"]){
+        text9.text = model.name;
+        addressString2 = model.id;
+        quCode = model.id;
+
     }
     
 }
 
 
-- (void)clicksave{
-    
-}
 
 
 
@@ -176,10 +369,6 @@
 
 
 
-
-- (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents {
-    text1.text = [NSString stringWithFormat:@"%ld-%ld-%ld",dateComponents.year,dateComponents.month,dateComponents.day];
-}
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if ([textField isEqual:text1]) {
@@ -199,42 +388,211 @@
         [self textFV];
         [self lod1];
         str = @"1";
-        [UIView animateWithDuration:.3 animations:^{
-            self->window.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-        }];
         return NO;
     }else if ([textField isEqual:text5]) {
         [self textFV];
         [self lod2];
         str = @"2";
-        [UIView animateWithDuration:.3 animations:^{
-            self->window.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-        }];
         return NO;
     }else if ([textField isEqual:text6]) {
         [self textFV];
         [self lod3];
         str = @"3";
-        [UIView animateWithDuration:.3 animations:^{
-            self->window.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-        }];
         return NO;
     }else if ([textField isEqual:text7]) {
         [self textFV];
+        str = @"4";
+        [self lod4];
+        return NO;
+    }
+    else if ([textField isEqual:text8]) {
+        [self textFV];
+        if (text7.text.length>0){
+            str = @"5";
+            [self lod5];
+        }
         
-        
-        [Manager requestPOSTWithURLStr:@
-         "http://server-shop.dxracer.cn/mall/app/common/address" paramDic:@{} finish:^(id  _Nonnull responseObject) {
-             NSDictionary *diction = [Manager returndictiondata:responseObject];
-            
-             NSLog(@"-----------%@",diction);
-         } enError:^(NSError * _Nonnull error) {
-             NSLog(@"%@",error);
-         }];
+        return NO;
+    }
+    else if ([textField isEqual:text9]) {
+        [self textFV];
+        if (text7.text.length>0&&text8.text.length>0){
+            str = @"6";
+            [self lod6];
+        }
         
         return NO;
     }
     return YES;
+}
+
+
+- (void)lod4{
+    LRWeakSelf(self);
+    NSString *urlString = [NSString stringWithFormat:@"%@?parentcode=%@",KURLNSString(@"config/address/list"),addressString];
+    //NSLog(@"%@",urlString);
+    [Manager requestPOSTWithURLStr:urlString finish:^(id  _Nonnull responseObject) {
+        NSDictionary *diction = [Manager returndictiondata:responseObject];
+        NSMutableArray *arr = (NSMutableArray *)diction;
+        if (arr.count == 0) {
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }else{
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }
+        [weakSelf.dataArray removeAllObjects];
+        for (NSDictionary *dic in arr) {
+            Model *model = [Model mj_objectWithKeyValues:dic];
+            [weakSelf.dataArray addObject:model];
+        }
+        self->addressOrother = @"2";
+//        NSLog(@"1111-----------%@",diction);
+        [weakSelf.tableview reloadData];
+    } enError:^(NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+- (void)lod5{
+     LRWeakSelf(self);
+    NSString *urlString = [NSString stringWithFormat:@"%@?parentcode=%@",KURLNSString(@"config/address/list"),addressString1];
+    //NSLog(@"%@",urlString);
+    [Manager requestPOSTWithURLStr:urlString finish:^(id  _Nonnull responseObject) {
+        NSDictionary *diction = [Manager returndictiondata:responseObject];
+        NSMutableArray *arr = (NSMutableArray *)diction;
+        if (arr.count == 0) {
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }else{
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }
+        [weakSelf.dataArray removeAllObjects];
+        for (NSDictionary *dic in arr) {
+            Model *model = [Model mj_objectWithKeyValues:dic];
+            [weakSelf.dataArray addObject:model];
+        }
+        self->addressOrother = @"2";
+//        NSLog(@"222222-----------%@",diction);
+        [weakSelf.tableview reloadData];
+    } enError:^(NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+- (void)lod6{
+    LRWeakSelf(self);
+    NSString *urlString = [NSString stringWithFormat:@"%@?parentcode=%@",KURLNSString(@"config/address/list"),addressString2];
+    //NSLog(@"%@",urlString);
+    [Manager requestPOSTWithURLStr:urlString finish:^(id  _Nonnull responseObject) {
+        NSDictionary *diction = [Manager returndictiondata:responseObject];
+        NSMutableArray *arr = (NSMutableArray *)diction;
+        
+        if (arr.count == 0) {
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }else{
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }
+        
+        [weakSelf.dataArray removeAllObjects];
+        for (NSDictionary *dic in arr) {
+            Model *model = [Model mj_objectWithKeyValues:dic];
+            [weakSelf.dataArray addObject:model];
+        }
+        self->addressOrother = @"2";
+//        NSLog(@"3333333333-----------%@",diction);
+        [weakSelf.tableview reloadData];
+    } enError:^(NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+
+
+
+
+- (void)lod1{
+    LRWeakSelf(self);
+    [Manager requestPOSTWithURLStr:KURLNSString(@"config/dictionary/data/getDataListByType?type=lead_source") finish:^(id  _Nonnull responseObject) {
+        NSDictionary *diction = [Manager returndictiondata:responseObject];
+        NSMutableArray *arr = (NSMutableArray *)diction;
+        if (arr.count == 0) {
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }else{
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }
+        [weakSelf.dataArray removeAllObjects];
+        for (NSDictionary *dic in arr) {
+            Model *model = [Model mj_objectWithKeyValues:dic];
+            [weakSelf.dataArray addObject:model];
+        }
+        self->addressOrother = @"1";
+        //NSLog(@"-----------%@",diction);
+        [weakSelf.tableview reloadData];
+    } enError:^(NSError * _Nonnull error) {
+        NSLog(@"-----------%@",error);
+    }];
+}
+- (void)lod2{
+    LRWeakSelf(self);
+    [Manager requestPOSTWithURLStr:KURLNSString(@"config/dictionary/data/getDataListByType?type=customer_scale") finish:^(id  _Nonnull responseObject) {
+        NSDictionary *diction = [Manager returndictiondata:responseObject];
+        NSMutableArray *arr = (NSMutableArray *)diction;
+        if (arr.count == 0) {
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }else{
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }
+        [weakSelf.dataArray removeAllObjects];
+        for (NSDictionary *dic in arr) {
+            Model *model = [Model mj_objectWithKeyValues:dic];
+            [weakSelf.dataArray addObject:model];
+        }self->addressOrother = @"1";
+        //NSLog(@"-----------%@",diction);
+        [weakSelf.tableview reloadData];
+    } enError:^(NSError * _Nonnull error) {
+        NSLog(@"-----------%@",error);
+    }];
+}
+- (void)lod3{
+    LRWeakSelf(self);
+    [Manager requestPOSTWithURLStr:KURLNSString(@"config/dictionary/data/getDataListByType?type=customer_industry") finish:^(id  _Nonnull responseObject) {
+        NSDictionary *diction = [Manager returndictiondata:responseObject];
+        NSMutableArray *arr = (NSMutableArray *)diction;
+        if (arr.count == 0) {
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }else{
+            [UIView animateWithDuration:.3 animations:^{
+                self->window.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }];
+        }
+        [weakSelf.dataArray removeAllObjects];
+        for (NSDictionary *dic in arr) {
+            Model *model = [Model mj_objectWithKeyValues:dic];
+            [weakSelf.dataArray addObject:model];
+        }self->addressOrother = @"1";
+        //NSLog(@"-----------%@",diction);
+        [weakSelf.tableview reloadData];
+    } enError:^(NSError * _Nonnull error) {
+        NSLog(@"-----------%@",error);
+    }];
 }
 
 
@@ -258,15 +616,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
+- (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents {
+    text1.text = [NSString stringWithFormat:@"%ld-%ld-%ld",dateComponents.year,dateComponents.month,dateComponents.day];
+}
 
 
 
@@ -292,7 +644,7 @@
     UILabel *lab1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     lab1.font = FONT(20);
     lab1.text = @"   基本信息";
-    lab1.backgroundColor = [UIColor blackColor];
+    lab1.backgroundColor = RGBACOLOR(64, 64, 64, 1);
     lab1.textColor = [UIColor whiteColor];
     [scrollview addSubview:lab1];
     
@@ -313,7 +665,7 @@
     UILabel *lab5 = [[UILabel alloc]initWithFrame:CGRectMake(0, 200, SCREEN_WIDTH, 40)];
     lab5.font = FONT(20);
     lab5.text = @"   补充信息";
-    lab5.backgroundColor = [UIColor blackColor];
+    lab5.backgroundColor = RGBACOLOR(64, 64, 64, 1);
     lab5.textColor = [UIColor whiteColor];
     [scrollview addSubview:lab5];
     
@@ -330,16 +682,25 @@
     [scrollview addSubview:lab8];
     
     UILabel *lab9 = [[UILabel alloc]initWithFrame:CGRectMake(10, 400, 70, 40)];
-    lab9.text = @"省市区";
+    lab9.text = @"省";
     [scrollview addSubview:lab9];
     
     UILabel *lab10 = [[UILabel alloc]initWithFrame:CGRectMake(10, 450, 70, 40)];
-    lab10.text = @"详细地址";
+    lab10.text = @"市";
     [scrollview addSubview:lab10];
     
     UILabel *lab11 = [[UILabel alloc]initWithFrame:CGRectMake(10, 500, 70, 40)];
-    lab11.text = @"客户介绍";
+    lab11.text = @"区";
     [scrollview addSubview:lab11];
+    
+    
+    UILabel *lab12 = [[UILabel alloc]initWithFrame:CGRectMake(10, 550, 70, 40)];
+    lab12.text = @"详细地址";
+    [scrollview addSubview:lab12];
+    
+    UILabel *lab13 = [[UILabel alloc]initWithFrame:CGRectMake(10, 600, 70, 40)];
+    lab13.text = @"客户介绍";
+    [scrollview addSubview:lab13];
     
     
     [self buchongInfo];
@@ -349,8 +710,9 @@
     text6.placeholder = @"请选择";
     text5.placeholder = @"请选择";
     text7.placeholder = @"请选择";
-  
-    scrollview.contentSize = CGSizeMake(0, 650);
+    text8.placeholder = @"请选择";
+    text9.placeholder = @"请选择";
+    scrollview.contentSize = CGSizeMake(0, 750);
 }
 
 
@@ -398,8 +760,18 @@
     text8.borderStyle = UITextBorderStyleRoundedRect;
     [scrollview addSubview:text8];
     
+    text9 = [[UITextField alloc]initWithFrame:CGRectMake(90, 500, SCREEN_WIDTH-100, 40)];
+    text9.delegate = self;
+    text9.borderStyle = UITextBorderStyleRoundedRect;
+    [scrollview addSubview:text9];
     
-    textview = [[UITextView alloc]initWithFrame:CGRectMake(90, 500,  SCREEN_WIDTH-100, 120)];
+    text10 = [[UITextField alloc]initWithFrame:CGRectMake(90, 550, SCREEN_WIDTH-100, 40)];
+    text10.delegate = self;
+    text10.borderStyle = UITextBorderStyleRoundedRect;
+    [scrollview addSubview:text10];
+    
+    
+    textview = [[UITextView alloc]initWithFrame:CGRectMake(90, 600,  SCREEN_WIDTH-100, 120)];
     textview.delegate = self;
     LRViewBorderRadius(textview, 5, .8, [UIColor colorWithWhite:.8 alpha:.4]);
     textview.font = FONT(16);

@@ -20,12 +20,17 @@
     UIBarButtonItem *bar = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(clickBack)];
     self.navigationItem.leftBarButtonItem = bar;
     
-    
-    // Do any additional setup after loading the view.
 }
+
+
+
 - (void)clickBack{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+
+
 /*
  #pragma mark - Navigation
  

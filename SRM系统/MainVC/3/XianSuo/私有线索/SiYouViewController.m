@@ -7,9 +7,12 @@
 //
 
 #import "SiYouViewController.h"
-
+#import "AddSiYouViewController.h"
 #import "GongYouXianSuoCell.h"
+#import "AddGongYouConnectViewController.h"
+#import "ADD_GouTongJiLu_ViewController.h"
 
+#import "XianSuoDetails_One_ViewController.h"
 @interface SiYouViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSInteger number;
@@ -22,7 +25,12 @@
 @end
 
 @implementation SiYouViewController
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    Model *model = [self.dataArray objectAtIndex:indexPath.row];
+//    XianSuoDetails_One_ViewController *one = [[XianSuoDetails_One_ViewController alloc]init];
+//    [Manager sharedManager].idXianSuoString = model.id;
+//    [self.navigationController pushViewController:one animated:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
@@ -65,12 +73,11 @@
 - (void)loddeList{
     [self.tableview.mj_footer endRefreshing];
     __weak typeof(self) weakSelf = self;
-    NSDictionary *dic = @{@"":@"",
+    NSDictionary *dic = @{@"currentPage":@"1",
+                          @"pageSize":@"10",
+                          @"sort":@"LeadPrivate_id desc",
                           };
-    NSString *st = [NSString stringWithFormat:@"%@?currentPage=1&pageSize=10",KURLNSString(@"lead/private/list")];
-    NSString *urlstring = [st stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    [Manager requestPOSTWithURLStr:urlstring paramDic:dic finish:^(id  _Nonnull responseObject) {
+    [Manager requestPOSTWithURLStr:[Manager dictionToString:dic string:KURLNSString(@"lead/private/list?")] finish:^(id  _Nonnull responseObject) {
         NSDictionary *diction = [Manager returndictiondata:responseObject];
 //        NSLog(@"--SiYou--------------------------%@",diction);
         self->number = [[diction objectForKey:@"total"] integerValue];
@@ -92,12 +99,12 @@
 - (void)loddeSLList{
     [self.tableview.mj_header endRefreshing];
     __weak typeof(self) weakSelf = self;
-    NSDictionary *dic = @{@"":@"",
+    NSDictionary *dic = @{@"currentPage":[NSString stringWithFormat:@"%ld",page],
+                          @"pageSize":@"10",
+                          @"sort":@"LeadPrivate_id desc",
                           };
-    NSString *st = [NSString stringWithFormat:@"%@?currentPage=%ld&pageSize=10",KURLNSString(@"lead/private/list"),page];
-    NSString *urlstring = [st stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    [Manager requestPOSTWithURLStr:urlstring paramDic:dic finish:^(id  _Nonnull responseObject) {
+   
+    [Manager requestPOSTWithURLStr:[Manager dictionToString:dic string:KURLNSString(@"lead/private/list?")] finish:^(id  _Nonnull responseObject) {
         NSDictionary *diction = [Manager returndictiondata:responseObject];
         for (NSDictionary *dt in [diction objectForKey:@"list"]) {
             Model *model = [Model mj_objectWithKeyValues:dt];
@@ -113,13 +120,6 @@
 }
 
 
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIViewController *v = [[UIViewController alloc]init];
-    v.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:v animated:YES];
-}
 
 
 
@@ -142,10 +142,9 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     cell.contentView.backgroundColor = RGBACOLOR(245, 245, 245, 1);
     LRViewBorderRadius(cell.bgview, 10, 0, [UIColor whiteColor]);
-//    cell.toplab.backgroundColor = RGBACOLOR(51, 138, 253, 1);
-    LRViewBorderRadius(cell.btn1, 15, 1, RGBACOLOR(51, 138, 253, 1));
-    [cell.btn1 setTitleColor:RGBACOLOR(51, 138, 253, 1) forState:UIControlStateNormal];
-    LRViewBorderRadius(cell.btn2, 15, 1, [UIColor lightGrayColor]);
+    cell.toplab.backgroundColor = RGBACOLOR(64, 64, 64, 1);
+    LRViewBorderRadius(cell.btn1, 15, 1, [UIColor lightGrayColor]);
+    [cell.btn1 setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     
     Model *mo = [self.dataArray objectAtIndex:indexPath.row];
     cell.lab1.text = mo.customerShortName;
@@ -159,42 +158,78 @@
     
     cell.lab8.text = [NSString stringWithFormat:@"沟通渠道 %@",mo.leadSource];
     cell.lab9.text = [NSString stringWithFormat:@"线索编号 %@",mo.leadNo];
-    cell.lab10.text = [NSString stringWithFormat:@"已创建天数 %@",mo.existDays];
+    cell.lab10.text = [NSString stringWithFormat:@"追踪人 %@",mo.followPersonName];
     cell.lab11.text = [NSString stringWithFormat:@"获取日期 %@",mo.leadCreateDate];
     
     [cell.btn1 addTarget:self action:@selector(clickbtn1gy:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.btn2 addTarget:self action:@selector(clickbtn2gy:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btn3 addTarget:self action:@selector(clickbtn3gy:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
 - (void)clickbtn1gy:(UIButton *)sender{
-    
+    GongYouXianSuoCell *cell = (GongYouXianSuoCell *)[[[sender superview] superview] superview];
+    NSIndexPath *indexpath = [self.tableview indexPathForCell:cell];
+    Model *model = [self.dataArray objectAtIndex:indexpath.row];
+    AddSiYouViewController *edit = [[AddSiYouViewController alloc]init];
+    edit.title = @"编辑私有线索";
+    edit.model = model;
+    [self.navigationController pushViewController:edit animated:YES];
 }
-- (void)clickbtn2gy:(UIButton *)sender{
-    
-}
+
 - (void)clickbtn3gy:(UIButton *)sender{
+    LRWeakSelf(self);
     GongYouXianSuoCell *cell = (GongYouXianSuoCell *)[[[sender superview] superview] superview];
     NSIndexPath *indexpath = [self.tableview indexPathForCell:cell];
     Model *model = [self.dataArray objectAtIndex:indexpath.row];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"请选择以下操作" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *aaa = [UIAlertAction actionWithTitle:@"编辑线索" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        AddSiYouViewController *edit = [[AddSiYouViewController alloc]init];
+        edit.title = @"编辑私有线索";
+        edit.model = model;
+        [self.navigationController pushViewController:edit animated:YES];
     }];
     UIAlertAction *bbb = [UIAlertAction actionWithTitle:@"新增联系人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        AddGongYouConnectViewController *edit = [[AddGongYouConnectViewController alloc]init];
+        edit.title = @"新增联系人";
+        edit.model = model;
+        [weakSelf.navigationController pushViewController:edit animated:YES];
     }];
     UIAlertAction *ccc = [UIAlertAction actionWithTitle:@"新增沟通记录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        ADD_GouTongJiLu_ViewController *edit = [[ADD_GouTongJiLu_ViewController alloc]init];
+        edit.title = @"新增沟通记录";
+        edit.model = model;
+        [weakSelf.navigationController pushViewController:edit animated:YES];
     }];
     UIAlertAction *ddd = [UIAlertAction actionWithTitle:@"转到公有线索" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        [Manager requestPOSTWithURLStr:[Manager dictionToString:@{@"id":model.id} string:KURLNSString(@"lead/private/toPublic?")] finish:^(id  _Nonnull responseObject) {
+            NSDictionary *diction = [Manager returndictiondata:responseObject];
+            //NSLog(@"------------%@",diction);
+            if ([[diction objectForKey:@"code"]isEqualToString:@"success"]) {
+                [weakSelf dengdaiupdate:@"已转到公有线索"];
+                [weakSelf setUpRefresh];
+            }else{
+                [weakSelf dengdaiupdate:[diction objectForKey:@"msg"]];
+            }
+        } enError:^(NSError * _Nonnull error) {
+            
+        }];
     }];
     UIAlertAction *fff = [UIAlertAction actionWithTitle:@"转为机会" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
+        [Manager requestPOSTWithURLStr:[Manager dictionToString:@{@"leadNo":model.leadNo} string:KURLNSString(@"oppo/bill/create?")] finish:^(id  _Nonnull responseObject) {
+            NSDictionary *diction = [Manager returndictiondata:responseObject];
+//            NSLog(@"------------%@",diction);
+            if ([[diction objectForKey:@"code"]isEqualToString:@"success"]) {
+                [weakSelf dengdaiupdate:@"已转为机会"];
+                [weakSelf setUpRefresh];
+            }else{
+                [weakSelf dengdaiupdate:[diction objectForKey:@"msg"]];
+            }
+        } enError:^(NSError * _Nonnull error) {
+            
+        }];
+        
     }];
-   
     UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
     [alert addAction:aaa];
@@ -206,7 +241,15 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-
+- (void)dengdaiupdate:(NSString *)str{
+    MBProgressHUD *hud= [[MBProgressHUD alloc] initWithView:self.view];
+    [hud setRemoveFromSuperViewOnHide:YES];
+    hud.label.text =str;
+    [hud setMode:MBProgressHUDModeCustomView];
+    [self.view addSubview:hud];
+    [hud showAnimated:YES];
+    [hud hideAnimated:YES afterDelay:1.0];
+}
 
 
 

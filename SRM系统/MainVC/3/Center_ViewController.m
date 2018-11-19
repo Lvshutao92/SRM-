@@ -177,7 +177,9 @@
 - (void)clickUserBtn{
     UserViewController *xiaosuo = [[UserViewController alloc]init];
     xiaosuo.title = @"个人中心";
-    [self.navigationController pushViewController:xiaosuo animated:YES];
+    MainNavigationViewController *na = [[MainNavigationViewController alloc]initWithRootViewController:xiaosuo];
+    na.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:na animated:YES completion:nil];
 }
 
 
